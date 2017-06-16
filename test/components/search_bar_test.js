@@ -12,12 +12,30 @@ describe('Search Bar', () => {
 		expect(component).to.exist;
 	});
 
-	it('Has a bootstrap input class', () => {
-		expect(component).to.have.class('form-control');
+	it('Has a bootstrap input group class', () => {
+		expect(component).to.have.class('input-group');
 	});
 
-	it('some text entered', () => {
-		component.simulate('change', 'Some text input');
-		expect(component).to.have.value('Some text input');
-	});
+	describe('Input behaviour', () => {
+		let input;
+		beforeEach(() => {
+			input = component.find('input');
+		});
+
+		it('Has an input with class form-control', () => {
+			expect(input).to.exist;
+			expect(input).to.have.class('form-control');
+		});
+
+		it('When text is entered then the input should be displayed.', () => {
+			input.simulate('change', 'Some text input');
+			expect(input).to.have.value('Some text input');
+		});
+
+		it('When clicked on text field, earlier value is cleared.', () => {
+			input.simulate('change', 'Some text input');
+			input.simulate('click');
+			expect(input).to.have.value('');
+		});
+	});	
 });
