@@ -35,7 +35,7 @@ describe('Search Bar', () => {
 		it('When clicked on text field, earlier value is cleared.', () => {
 			input.simulate('change', 'Some text input');
 			input.simulate('click');
-			expect(input).to.have.value('');
+			expect(input).to.be.empty;
 		});
 	});	
 });
