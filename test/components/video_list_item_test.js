@@ -8,10 +8,14 @@ describe('Video List Item', () => {
 
 	const link = 'http://google.com';
 	const video_title = 'Video Title';
+	const video_description = 'Video Description';
 
 	beforeEach(() => {
-		component = renderFunctionalComponent(VideoListItem, {
+		const mockProps = {
 			video: {
+				id: {
+					description: video_description
+				},
 				snippet: {
 					thumbnails: {
 						default: {
@@ -21,7 +25,8 @@ describe('Video List Item', () => {
 					title: video_title
 				}
 			}
-		});
+		};
+		component = renderFunctionalComponent(VideoListItem, mockProps);
 	});
 
 	it('should exist', () => {
@@ -30,6 +35,7 @@ describe('Video List Item', () => {
 
 	it('should have proper class', () => {
 		expect(component).to.have.class('list-group-item');
+		log.debug('\tComponent : ', component);
 	});
 
 	it('should have a div with media class', () => {
